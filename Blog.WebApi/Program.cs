@@ -1,3 +1,4 @@
+using Blog.Core.Security;
 using Blog.Core.Services.Implementation;
 using Blog.Core.Services.Interfaces;
 using Blog.DataLayer.Context;
@@ -21,7 +22,7 @@ builder.Services.AddDbContext<BlogDbContext>(option =>
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IUserService, UserService>();
-
+builder.Services.AddScoped<IPasswordHelper, PasswordHelper>();
 
 #endregion
 #region Cors
@@ -53,6 +54,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false
         };
     });
+
 
 #endregion
 
